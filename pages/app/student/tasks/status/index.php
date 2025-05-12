@@ -172,6 +172,31 @@ $activeTab = $_GET['v'] ?? 'all';
             </form>
         </div>
     </div>
+    <!-- Modal Agregar Tarea -->
+    <div class="modal fade" id="modalAgregarTarea" tabindex="-1" aria-labelledby="modalAgregarTareaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="form-agregar-tarea" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAgregarTareaLabel">Agregar Nueva Tarea</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="agregar-titulo" name="titulo" placeholder="Título" required>
+                        <label for="agregar-titulo">Título</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="agregar-descripcion" name="descripcion" placeholder="Descripción" style="height: 100px;"></textarea>
+                        <label for="agregar-descripcion">Descripción</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Agregar Tarea</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
     <script>
@@ -180,6 +205,7 @@ $activeTab = $_GET['v'] ?? 'all';
                 const token = localStorage.getItem('Tk');
                 const BASE_API = BASE_URL_API + 'V1/Tasks/?action=list';
                 const UPDATE_API = BASE_URL_API + 'V1/Tasks/?action=edit';
+                const CREATE_API = BASE_URL_API + 'V1/Tasks/?action=create';
                 const DELETE_API = BASE_URL_API + 'V1/Tasks/?action=delete';
                 const SHARED_API = BASE_URL_API + 'V1/Tasks/?action=shared_list';
                 const SHARED_TASK_API = BASE_URL_API + 'V1/Tasks/?action=share';
@@ -193,7 +219,7 @@ $activeTab = $_GET['v'] ?? 'all';
                     pending: BASE_API + '&completada=0',
                     completed: BASE_API + '&completada=1',
                     shared: SHARED_API,
-                    feed:FEED_API
+                    feed: FEED_API
 
                 };
 
@@ -392,6 +418,34 @@ $activeTab = $_GET['v'] ?? 'all';
                                 $('#modalEditarTarea').modal('show');
                             });
 
+                            $('#form-agregar-tarea').on('submit', function(e) {
+                                e.preventDefault();
+                                const titulo = $('#agregar-titulo').val();
+                                const descripcion = $('#agregar-descripcion').val();
+
+                                $.ajax({
+                                    url: CREATE_API,
+                                    method: 'POST',
+                                    headers: {
+                                        'Authorization': `Bearer ${token}`
+                                    },
+                                    contentType: 'application/json',
+                                    data: JSON.stringify({
+                                        titulo: titulo,
+                                        descripcion: descripcion
+                                    }),
+                                    success: function(res) {
+                                        $('#modalAgregarTarea').modal('hide');
+                                        Swal.fire('Tarea agregada', 'Se agregó correctamente la tarea.', 'success');
+                                        fetchTasks('pending'); // refresca la lista
+                                        $('#form-agregar-tarea')[0].reset(); // limpia el formulario
+                                    },
+                                    error: function() {
+                                        Swal.fire('Error', 'No se pudo agregar la tarea.', 'error');
+                                    }
+                                });
+                            });
+
                             $('.btn-compartir').off('click').on('click', function() {
                                 const id = $(this).data('id');
                                 const $card = $(`.card-wrapper[data-id="${id}"]`);
@@ -579,8 +633,9 @@ $activeTab = $_GET['v'] ?? 'all';
                         }
                     });
                 }
-                function fetchFeedTasks(){
-                     const $container = $('#cards-feed');
+
+                function fetchFeedTasks() {
+                    const $container = $('#cards-feed');
                     $container.html('<div class="col-12 text-center">Cargando...</div>');
 
                     $.ajax({
@@ -688,20 +743,28 @@ $activeTab = $_GET['v'] ?? 'all';
 
                 if (activeTab === 'pending') {
                     $('#pills-tabContent').html(`
-                <div class="row mb-4">
-                    <div class="col-md-5">
-                    <input id="filtro-titulo" type="text" class="form-control" placeholder="Buscar por título">
+
+
+                    <div class="row mb-4">
+                        <div class="col-md-5">
+                            <input id="filtro-titulo" type="text" class="form-control" placeholder="Buscar por título">
+                        </div>
+                        <div class="col-md-5">
+                            <input id="filtro-descripcion" type="text" class="form-control" placeholder="Buscar por descripción">
+                        </div>
+                        <div class="col-md-2 d-flex gap-2">
+                            <button id="btn-filtrar" class="btn btn-primary w-100">Buscar</button>
+                  
+                        </div>
                     </div>
-                    <div class="col-md-5">
-                    <input id="filtro-descripcion" type="text" class="form-control" placeholder="Buscar por descripción">
+                                        <div class="row mb-4 d-flex justify-content-end">
+                        <button id="btn-agregar-tarea" class="btn btn-success" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#modalAgregarTarea">
+                            <i class="fas fa-plus"></i> <span class="btn-text">Agregar</span>
+                        </button>
                     </div>
-                    <div class="col-md-2">
-                    <button id="btn-filtrar" class="btn btn-primary w-100">Buscar</button>
-                    </div>
-                </div>
-                 <hr class="pt-2 pb-2">
-                <div class="row g-4" id="cards-pending"></div>
-                `);
+                    <hr class="pt-2 pb-2">
+                    <div class="row g-4" id="cards-pending"></div>
+                    `);
                     fetchTasks('pending');
                 } else if (activeTab === 'completed') {
                     $('#pills-tabContent').html(`
@@ -728,8 +791,7 @@ $activeTab = $_GET['v'] ?? 'all';
                     $('#pills-tabContent').html('<div class="row g-4" id="cards-feed"></div>');
                     fetchFeedTasks();
 
-                }
-                else {
+                } else {
                     window.location.href = BASE_URL + 'pages/app/student/tasks/status/?v=pending';
                 }
             });

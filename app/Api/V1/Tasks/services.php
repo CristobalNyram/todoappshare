@@ -609,3 +609,87 @@ function taskFeedList($request)
         ];
     }
 }
+
+
+function taskDelete($request)
+{
+    global $meedo;
+    UserSession::start();
+    $user = UserSession::getUser();
+    $student = $user['alumno'] ?? null;
+
+    if (!$student) {
+        return [
+            'status' => false,
+            'status_code' => 403,
+            'message' => 'No se encontró tu información.',
+            'data' => []
+        ];
+    }
+
+    $id_alumno = $student['id_alumno'];
+    $id_tarea = $request->get('id_tarea');
+
+    try {
+        // Validar que la tarea exista y le pertenezca al alumno
+        $tarea = $meedo->get('tareas', '*', [
+            'id_tarea' => $id_tarea,
+            'id_alumno' => $id_alumno
+        ]);
+
+        if (!$tarea) {
+            return [
+                'status' => false,
+                'status_code' => 404,
+                'message' => 'Tarea no encontrada o no te pertenece.',
+                'data' => []
+            ];
+        }
+
+        // Iniciar transacción
+        $meedo->pdo->beginTransaction();
+
+        // Obtener ID de tarea compartida (si existe)
+        $compartida = $meedo->get('tareas_compartidas', 'id_tarea_compartida', [
+            'id_tarea' => $id_tarea,
+            'id_alumno' => $id_alumno
+        ]);
+
+        if ($compartida) {
+            // Eliminar likes relacionados a esta tarea compartida
+            $meedo->delete('tareas_likes', [
+                'id_tarea_compartida' => $compartida
+            ]);
+
+            // Eliminar tarea compartida
+            $meedo->delete('tareas_compartidas', [
+                'id_tarea_compartida' => $compartida
+            ]);
+        }
+
+        // Eliminar la tarea
+        $meedo->delete('tareas', ['id_tarea' => $id_tarea]);
+
+        // Confirmar transacción
+        $meedo->pdo->commit();
+
+        return [
+            'status' => true,
+            'status_code' => 200,
+            'message' => 'Tarea eliminada correctamente.',
+            'data' => ['id_tarea' => $id_tarea]
+        ];
+    } catch (Exception $e) {
+        if ($meedo->pdo->inTransaction()) {
+            $meedo->pdo->rollBack();
+        }
+
+        return [
+            'status' => false,
+            'status_code' => 500,
+            'message' => 'Error al eliminar la tarea.',
+            'errors' => ['exception' => $e->getMessage()],
+            'data' => []
+        ];
+    }
+}
