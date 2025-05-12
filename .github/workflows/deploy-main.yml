@@ -27,7 +27,7 @@ jobs:
           echo "🚀 Intentando conexión SSH..."
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 -p  ${{ secrets.SSH_PORT}} ${{ secrets.SSH_USER}}@${{ secrets.SSH_IP}} << 'EOF'
             echo '✅ Conexión SSH exitosa'
-            cd domains/trainingmidas.com/public_html/academy.trainingmidas.com
+            cd domains/trainingmidas.com/public_html/todoappshare
             echo '✅ Acceso a la carpeta de despliegue'
             git pull origin master
             echo '✅ Pull de la rama master'
