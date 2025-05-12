@@ -7,10 +7,6 @@ on:
       - closed
     branches:
       - master
-    push:
-  
-  branches:
-    - master
 
 jobs: 
   deploy-test-job-one:

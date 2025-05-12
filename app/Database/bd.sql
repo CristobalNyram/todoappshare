@@ -16,8 +16,28 @@
 
 
 -- Volcando estructura de base de datos para todoapp
-CREATE DATABASE IF NOT EXISTS `todoappshare` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `todoappshare`;
+-- CREATE DATABASE IF NOT EXISTS `todoappshare` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
+-- USE `todoappshare`;
+
+-- Volcando estructura para tabla todoapp.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id_usuario` int unsigned NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(255) NOT NULL,
+  `contrasenia` text NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `paterno` varchar(255) NOT NULL,
+  `estatus` varchar(2) NOT NULL,
+  `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecha_actualizacion` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+
+-- Volcando datos para la tabla todoapp.usuarios: ~4 rows (aproximadamente)
+INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contrasenia`, `nombre`, `paterno`, `estatus`, `fecha_creacion`, `fecha_actualizacion`) VALUES
+	(1, 'super.admin@hotmail.com', '$2y$12$82s1LTJMUmhay5jSZzK8VuNWfvGvcD/FboMnv8gpbMKVdbBS3/qDG', 'super', 'admin', '1', '2025-04-17 14:33:39', '2025-04-25 17:57:23'),
+	(2, 'profesor@hotmail.com', '$2y$12$82s1LTJMUmhay5jSZzK8VuNWfvGvcD/FboMnv8gpbMKVdbBS3/qDG', '', '', '1', '2025-04-17 14:33:39', '2025-04-25 17:57:16'),
+	(3, 'daniela.sanchez@autotraffic.com.mx', '$2y$12$82s1LTJMUmhay5jSZzK8VuNWfvGvcD/FboMnv8gpbMKVdbBS3/qDG', 'autotraficc', 'empresa', '1', '2025-04-25 17:42:52', '2025-05-11 09:43:24'),
+	(4, 'marrinmarrin23@gmail.com', '$2y$12$82s1LTJMUmhay5jSZzK8VuNWfvGvcD/FboMnv8gpbMKVdbBS3/qDG', 'cristobal', 'marin', '1', '2025-04-25 17:42:52', '2025-05-12 07:14:09');
 
 -- Volcando estructura para tabla todoapp.alumnos
 CREATE TABLE IF NOT EXISTS `alumnos` (
@@ -554,26 +574,6 @@ INSERT INTO `tareas_likes` (`id_like`, `id_tarea_compartida`, `id_alumno`, `fech
 	(11, 13, 1, '2025-05-12 13:01:23'),
 	(12, 3, 1, '2025-05-12 13:01:26'),
 	(13, 16, 2, '2025-05-12 13:05:39');
-
--- Volcando estructura para tabla todoapp.usuarios
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id_usuario` int unsigned NOT NULL AUTO_INCREMENT,
-  `usuario` varchar(255) NOT NULL,
-  `contrasenia` text NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `paterno` varchar(255) NOT NULL,
-  `estatus` varchar(2) NOT NULL,
-  `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
-  `fecha_actualizacion` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla todoapp.usuarios: ~4 rows (aproximadamente)
-INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contrasenia`, `nombre`, `paterno`, `estatus`, `fecha_creacion`, `fecha_actualizacion`) VALUES
-	(1, 'super.admin@hotmail.com', '$2y$12$82s1LTJMUmhay5jSZzK8VuNWfvGvcD/FboMnv8gpbMKVdbBS3/qDG', 'super', 'admin', '1', '2025-04-17 14:33:39', '2025-04-25 17:57:23'),
-	(2, 'profesor@hotmail.com', '$2y$12$82s1LTJMUmhay5jSZzK8VuNWfvGvcD/FboMnv8gpbMKVdbBS3/qDG', '', '', '1', '2025-04-17 14:33:39', '2025-04-25 17:57:16'),
-	(3, 'daniela.sanchez@autotraffic.com.mx', '$2y$12$82s1LTJMUmhay5jSZzK8VuNWfvGvcD/FboMnv8gpbMKVdbBS3/qDG', 'autotraficc', 'empresa', '1', '2025-04-25 17:42:52', '2025-05-11 09:43:24'),
-	(4, 'marrinmarrin23@gmail.com', '$2y$12$82s1LTJMUmhay5jSZzK8VuNWfvGvcD/FboMnv8gpbMKVdbBS3/qDG', 'cristobal', 'marin', '1', '2025-04-25 17:42:52', '2025-05-12 07:14:09');
 
 -- Volcando estructura para tabla todoapp.usuarios_historico_acceso
 CREATE TABLE IF NOT EXISTS `usuarios_historico_acceso` (
