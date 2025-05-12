@@ -49,7 +49,7 @@ define("BASE_URL_API", "http://127.0.0.1/practicas/todoapp/app/Api/");
 define("JWT_SECRET", "todoapp2025");
 
 define("DB_HOST", "localhost");
-define("DB_NAME", "todoapp");
+define("DB_NAME", "todoappshare");
 define("DB_USER", "root");
 define("DB_PASSWORD", "");
 define("DB_CHARSET", "utf8mb4");
