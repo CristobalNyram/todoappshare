@@ -25,3 +25,6 @@ app/composer.lock
 *.tar.gz
 *.sql
 *.sql.gz
+
+# Excepciones
+!app/Database/bd.sql
