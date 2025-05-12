@@ -1,0 +1,81 @@
+
+
+body{
+    grid-template-rows: 180px 1fr auto;
+}
+
+.searchBarContainer{
+    width: 90%;
+}
+#searchBarIcon {
+    left: 19px;
+}
+
+
+.progress-bar {
+    width: 90%;
+    margin: 0 auto;
+    text-align: start;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .progress {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #504850;
+    border-radius: 10px;
+    text-align: center;
+    height: 10px;
+  }
+  
+  .progress-inner {
+    background-color: #53F19A;
+    height: 10px;
+    border-radius: 10px;
+    width: 40%;
+  }
+  
+
+  .hidden {
+    display: none;
+  }
+  
+  #modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #modal {
+    background-color: white;
+    padding: 20px;
+  }
+  
+  
+
+
+@media screen and (min-width: 378px) {
+    #searchBarTop{
+        width: 100%;
+        padding-left: 0;
+    }
+
+
+    #searchBarIcon {
+        left: 6px;
+    }
+
+    
+body{
+    grid-template-rows: 150px 1fr auto;
+}
+    
+}

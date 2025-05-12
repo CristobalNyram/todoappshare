@@ -1,0 +1,35 @@
+name: Deploy to Test
+run-name: Deploy to Test
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+jobs: 
+  deploy-test-job-one:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: SSH setup and deploy
+        if: github.actor == 'CristobalNyram'
+        run: |
+          echo "🔧 Creando carpeta .ssh"
+          mkdir -p ~/.ssh
+          echo "📝 Escribiendo clave privada en id_ed25519"
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          echo "🔒 Ajustando permisos"
+          chmod 600 ~/.ssh/id_ed25519
+          echo "📡 Agregando host al known_hosts"
+          ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.SSH_IP}} >> ~/.ssh/known_hosts
+          echo "🚀 Intentando conexión SSH..."
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 -p  ${{ secrets.SSH_PORT}} ${{ secrets.SSH_USER}}@${{ secrets.SSH_IP}} << 'EOF'
+            echo '✅ Conexión SSH exitosa'
+            cd domains/trainingmidas.com/public_html/academy.trainingmidas.com
+            echo '✅ Acceso a la carpeta de despliegue'
+            git pull origin master
+            echo '✅ Pull de la rama master'
+          EOF
+

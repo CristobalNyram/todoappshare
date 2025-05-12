@@ -1,0 +1,41 @@
+.navbarMain{
+    width: 100%;
+    /* width: 205px; */
+    /* height: 85px; */
+    padding: 20px;
+    position: fixed;
+    top:0;
+    background-color: #1D1923;
+    color:white;
+    justify-content: space-around;
+    display: none;
+    z-index: 200;
+}
+
+.navbarMain ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+    list-style: none;
+}
+
+.navbarMain img{
+    width: 205px; 
+    height: 85px;
+}
+
+.navbarMain ul li a{
+    text-decoration: none;
+    color:white;
+}
+
+@media screen and (min-width: 1024px) {
+    .navbarMain{
+        display: flex;
+    }
+
+    body{
+        padding-top: 100px;
+    }
+}

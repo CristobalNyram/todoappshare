@@ -1,0 +1,209 @@
+.contentSummary{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    margin-top: 80px;
+}
+
+
+.paymentData{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.paymentContainer{
+    width: 90%;
+    max-width: 1300px;
+    border: 1px solid white;
+    background-color: rgba(47, 47, 47, 0.7);
+    display: grid;
+    grid-template-columns: 1fr 40%;
+    margin-top: 300px;
+    padding: 20px 10px;
+    justify-items: center;
+    color: #C0BFBA;
+}
+
+
+
+input,textarea{
+    background-color: transparent;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #C0BFBA ;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+label{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cardsCourses{
+    padding-left: 20px;
+    border-left: 1px solid white;
+}
+
+.formContainer{
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.visaLogo{
+    width: 70px;
+    border-radius: 10px;
+}
+
+.cardPayment{
+    width: auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.cardPayment img{
+    width: 200px;
+}
+
+.priceFooterPaymetCard{
+    color: #E8CA74;
+    font-weight: bold;
+
+}
+
+.footerCardPayment{
+    text-align: end;
+    margin-top: 40px;
+}
+
+
+.PorTeacher{
+    font-size: 12px;
+    font-weight: lighter;
+    text-align: end;
+}
+
+
+.dataCourseCard h3{
+    margin-bottom: 1px;
+}
+
+.totalDisplay{
+    background-color: transparent;
+    border: solid 1px gray;
+    padding: 5px;
+    font-size: 16px;
+    color: #E8CA74;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.titleSectionPackage{
+    display: none;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .custom-checkbox input[type="checkbox"] {
+    display: none;
+  }
+  
+  .custom-checkbox label {
+    position: relative;
+    padding-left: 30px; /* Espacio para el icono */
+    cursor: pointer;
+  }
+  
+  .custom-checkbox label i.fa-check {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 24px; /* Tamaño del icono */
+    color: transparent; /* Icono invisible por defecto */
+    border: 1px solid #636361; /* Borde de color #636361 */
+    border-radius: 3px; /* Borde redondeado */
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked + label i.fa-check {
+    color: white; /* Cambia el color del icono cuando está marcado */
+  }
+  
+
+  .cbcircle{
+    border-radius: 50%;
+  }
+
+@media screen and (max-width: 1024px){
+
+    body{
+        grid-template-areas: "aside content" "aside content";
+    }
+
+
+    .cardsCourses{
+        padding-left: 0px;
+        border-left: 0;
+    }
+
+    .contentSummary{
+        grid-area: content;
+    }
+
+
+    .paymentContainer{
+        margin-top: 0;
+        width: 100%;
+        grid-template-columns: 1fr;
+        border: none;
+    }
+
+    .paymentData{
+        justify-self: end;
+        margin-top: 30px;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .cardsCourses{
+        width: 100%;
+    }
+
+    .cardPayment{
+        justify-content: space-around;
+    }
+
+    .dataSample{
+        width: 90%;
+    }
+
+    
+    .titleSectionPackage{
+        display: block;
+        width: 100%;
+        text-align: start;
+        margin-left: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid white;
+        color: #C0BFBA;
+    }
+
+}
+
+
+@media screen and (max-width: 596px) {
+    .cardPayment img{
+        width: 120px;
+        height: 80px;
+    }
+}

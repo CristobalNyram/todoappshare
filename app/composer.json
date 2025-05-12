@@ -1,0 +1,21 @@
+{
+    "name": "academy/app",
+    "authors": [
+        {
+            "name": "Cris N S",
+            "email": "crisco.nyram@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.11",
+        "klein/klein": "^2.1",
+        "phpmailer/phpmailer": "^6.9",
+        "nesbot/carbon": "^3.9",
+        "respect/validation": "^2.4",
+        "paragonie/anti-csrf": "^2.4",
+        "catfan/medoo": "^2.2",
+        "symfony/http-foundation": "^6.4",
+        "symfony/translation": "^6.4",
+        "symfony/security-core": "^6.4"
+    }
+}

@@ -1,0 +1,27 @@
+# Ignorar archivos de configuración sensibles
+app/Config/env.php
+app/Config/env.js
+app/Database/bd.php
+# Composer
+app/vendor/
+app/composer.lock
+# Archivos de logs y caché
+*.log
+*.cache
+*.tmp
+# Archivos ocultos y de control de versiones
+*.bak
+*.swp
+*.swo
+*.old
+# Archivos de desarrollo IDE/editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+# Archivos de despliegue o temporales
+*.zip
+*.tar.gz
+*.sql
+*.sql.gz

@@ -1,0 +1,139 @@
+.navbarMain{
+    background-color: transparent;
+    z-index: 300;
+}
+
+
+.navbarMain ul li a{
+    color:black;
+}
+
+body{
+    background-image: none;
+    background-color: #E7E7E7;
+}
+
+
+.editProfileContainer{
+    width: 80%;
+    max-width: 800px;
+    /* background-image: url('../images/backgroundEditProfile.png'); */
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    margin: 0 auto;
+    margin-top: 50px;
+    grid-template-columns: 20% 80%;
+    column-gap: 70px;
+    padding: 20px 30px;
+    background-color: white;
+}
+
+.circleProfile {
+    width: 150px; /* Tamaño del círculo principal */
+    height: 150px; /* Tamaño del círculo principal */
+    border-radius: 50%; /* Hace que el div sea redondo */
+    background-color: #FFAD73;
+    text-align: center;
+    position: relative;
+    margin-bottom: 60px;
+  }
+  
+  .circleProfile .initial {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px; /* Tamaño de la letra "B" */
+    color: #fff; /* Color del texto */
+  }
+  
+  .circleProfile .profileImage {
+    position: absolute;
+    bottom: -30px;
+    right: -40px;
+    width: 100px; /* Tamaño de la imagen */
+    height: 100px; /* Tamaño de la imagen */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+  }
+  
+
+.containerIconEditPhoto{
+    text-decoration: none;
+    color: #A7A7A7;
+}
+
+.avatarsContainer .avatar img{
+    width: 100%;
+}
+
+.avatarsContainer .avatar{
+    width: 70px;
+
+}
+
+.avatarsContainer{
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.editContent{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: start;
+}
+
+
+.sexContainer{
+    display: flex;
+    column-gap:20px;
+    flex-wrap: wrap;
+}
+
+.sexIconSelect{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.circleSelect{
+    width: 20px;
+    height: 20px;
+    background-color: #757575;
+    border-radius: 50%;
+    margin: 30px 0;
+}
+
+
+@media screen and (max-width: 1023px) {
+
+    body{
+        grid-template-areas: 
+        "aside content"
+        "aside content"
+        "footer footer"
+    }
+
+
+    .editProfileContainer{
+        grid-template-columns: 1fr;
+        grid-area: content;
+        justify-items: center;
+    }
+
+    .avatarsContainer,.sexContainer,.sexIconSelect{
+        justify-content: center;
+        row-gap: 20px;
+        margin:25px 0;
+    }
+
+    .circleProfile{
+        width: 100px;
+        height: 100px;
+    }
+}

@@ -1,0 +1,28 @@
+[
+    {
+      "prof_slug": "karina_trapaga",
+      "prof_nombre": "karina trapaga",
+      "prof_descripcion": "Lorem impsum",
+      "prof_foto": "assets/images/own/instructores/Karinaa.png"
+    },
+    {
+      "prof_slug": "bernardo_perez",
+      "prof_nombre": "Bernardo perez",
+      "prof_descripcion": "Lorem impsum",
+      "prof_foto": "assets/images/own/instructores/Bernardoo.png"
+    },
+    {
+      "prof_slug": "lorena_camargo",
+      "prof_nombre": "Lorena Camargo",
+      "prof_descripcion": "Lorem impsum",
+      "prof_foto": "assets/images/own/instructores/Lorenaa.png"
+    },
+    {
+        "prof_slug": "maria_trapaga",
+        "prof_nombre": "Maria trapaga",
+        "prof_descripcion": "Lorem impsum",
+        "prof_foto": "assets/images/own/instructores/Mariaa.png"
+    }
+    
+  ]
+  

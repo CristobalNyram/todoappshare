@@ -1,0 +1,25 @@
+# No permitir listado de archivos
+Options -Indexes -ExecCGI
+
+# Bloquear todos los archivos ocultos (ej: .env, .gitignore, .htaccess, etc.)
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Bloquear archivos sensibles y de configuración
+<FilesMatch "\.(env|example|sql|log|bak|zip|tar|gz|ini|sh|cmd|bat|ps1|gitignore|gitattributes|gitconfig)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Bloquear el directorio .git completamente
+RedirectMatch 403 /\.git
+
+# (Opcional) Proteger el mismo archivo .htaccess
+<Files ".htaccess">
+  Order allow,deny
+  Deny from all
+</Files>
+
+Options -ExecCGI

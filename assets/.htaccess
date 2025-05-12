@@ -1,0 +1,12 @@
+# Dentro de carpetas de solo archivos (como uploads), puedes poner:
+<FilesMatch "\.(php|php5|php7|phtml|phar|py|pl|cgi|asp|aspx|jsp|sh|rb|exe|dll)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+# Opcional: evitar ejecución de scripts CGI o similares
+RemoveHandler .cgi .pl .php .php5 .phtml .php7
+# Opcional: permitir solo ciertos tipos de archivos (por ejemplo, imágenes y PDFs)
+<FilesMatch "\.(jpg|jpeg|png|gif|pdf)$">
+  Order allow,deny
+  Allow from all
+</FilesMatch>
