@@ -111,6 +111,18 @@ try {
             (new HttpMethodGuard())->allowOnly(['GET']);
             $responseComplete = taskFeedList($request);
             break;
+        case 'delete':
+            (new HttpMethodGuard())->allowOnly(['DELETE']);
+             $errores = validateTaskDelete($request);
+            if (!empty($errores)) {
+                $statusCodeResponse = 400;
+                $statusResponse = false;
+                $messageResponse = "Datos inválidos...";
+                $errorsResponse = $errores;
+                break;
+            }
+            $responseComplete = taskDelete($request);
+            break;
         default:
             $messageResponse = 'Acción no válida...';
     }

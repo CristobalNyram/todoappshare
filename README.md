@@ -166,6 +166,12 @@ todoappshare/
 
 - 🎨 **Interfaz responsiva** construida con Bootstrap para una experiencia fluida en cualquier dispositivo.
 
+## 📫 Prueba los endpoints en Postman
+
+Puedes importar la colección de Postman y probar los endpoints fácilmente:
+
+🔗 [Probar en Postman](https://app.getpostman.com/join-team?invite_code=ad98c3996f3688c47522459ffd67e6fcb39aab36f4a734f610af9cfc5ea67437&target_code=583cf1ac356484c8753598cadc8fbac2)
+
 ## 👨‍💻 Autor
 
 **Cristobal Nyram**  

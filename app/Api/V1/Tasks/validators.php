@@ -66,3 +66,14 @@ function validateTaskLike(Request $request): array
 
     return $errors;
 }
+
+function validateTaskDelete(Request $request)
+{
+    $errors = [];
+
+    if (!v::notEmpty()->intVal()->validate($request->get('id_tarea'))) {
+        $errors['id_tarea'] = 'El ID de la tarea es obligatorio y debe ser numérico.';
+    }
+
+    return $errors;
+}
